@@ -1,0 +1,28 @@
+<h2 mat-dialog-title i18n="@@events.create.title">Veranstaltung erstellen</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <mat-dialog-content>
+    <app-datepicker
+      formControlName="date"
+      label="Datum"
+      i18n-label="@@events.create.fields.date"
+      [min]="minDate"
+      [errorMessages]="dateErrors"
+    />
+
+    <app-dropdown
+      formControlName="location"
+      label="Ort"
+      i18n-label="@@events.create.fields.location"
+      [options]="locationOptions"
+      [errorMessages]="locationErrors"
+    />
+
+    <app-dropdown formControlName="status" label="Status" i18n-label="@@events.create.fields.status" [options]="statusOptions" />
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" mat-dialog-close i18n="@@shared.actions.cancel">Abbrechen</button>
+    <button mat-flat-button type="submit" i18n="@@events.create.submit">Erstellen</button>
+  </mat-dialog-actions>
+</form>

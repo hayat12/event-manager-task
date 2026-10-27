@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+  // Compact, pill-shaped field.
+  @include mat.form-field-overrides(
+    (
+      container-height: 40px,
+      container-vertical-padding: 8px,
+      outlined-container-shape: 20px, // half the height: fully round; larger values widen the outline
+    )
+  );
+}
+
+mat-form-field {
+  width: 100%;
+}

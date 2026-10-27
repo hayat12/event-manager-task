@@ -1,0 +1,47 @@
+:host {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'header header'
+    'menu main';
+  // The page fills the window and only the content scrolls, so the side menu's bottom stays in view.
+  height: 100dvh;
+  background: var(--mat-sys-surface-container-low);
+}
+
+.layout-header {
+  grid-area: header;
+}
+
+.layout-menu {
+  grid-area: menu;
+}
+
+.content {
+  grid-area: main;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: 24px;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 'header' 'menu' 'main';
+  }
+
+  .content {
+    padding: 16px;
+  }
+}

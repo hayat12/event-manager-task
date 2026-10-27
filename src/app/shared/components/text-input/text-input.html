@@ -1,0 +1,19 @@
+<mat-form-field appearance="outline" subscriptSizing="dynamic">
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <input
+    #field
+    matInput
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [value]="value() ?? ''"
+    [disabled]="disabled()"
+    [errorStateMatcher]="errorStateMatcher"
+    (input)="update(field.value)"
+    (blur)="onTouched()"
+  />
+  @if (errorMessage(); as message) {
+    <mat-error>{{ message }}</mat-error>
+  }
+</mat-form-field>

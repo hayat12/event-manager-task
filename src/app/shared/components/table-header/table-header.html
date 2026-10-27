@@ -1,0 +1,37 @@
+<span class="title">{{ count() | number }} {{ label() }}</span>
+
+<div class="actions">
+  @if (viewToggle()) {
+    <mat-button-toggle-group
+      [value]="view()"
+      (change)="viewChange.emit($event.value)"
+      hideSingleSelectionIndicator
+    >
+      <mat-button-toggle value="list">
+        <mat-icon>view_list</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="card">
+        <mat-icon>tile_small</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  }
+
+  @if (createLabel()) {
+    <button mat-flat-button type="button" (click)="create.emit()">
+      <mat-icon>add</mat-icon>
+      {{ createLabel() }}
+    </button>
+  }
+
+  <button mat-stroked-button type="button" (click)="exportCsv.emit()">
+    {{ downloadLabel }}
+    <mat-icon>download</mat-icon>
+  </button>
+
+  @if (resettable()) {
+    <button mat-button type="button" (click)="resetFilter.emit()">
+      <mat-icon>filter_alt_off</mat-icon>
+      <ng-container i18n="@@shared.table.resetFilters">Filter zurücksetzen</ng-container>
+    </button>
+  }
+</div>

@@ -1,0 +1,65 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: var(--mat-sys-corner-extra-small);
+  background: var(--mat-sys-surface);
+
+  &.expanded {
+    border-color: var(--mat-sys-primary);
+    background: var(--mat-sys-secondary-container);
+  }
+
+  & app-event-status-select,
+  app-event-location-select {
+    border: 0.5px dashed lightgray;
+    padding: 3px 8px;
+    border-radius: 8px;
+  }
+}
+
+.top,
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.date {
+  color: var(--mat-sys-on-surface-variant);
+  font: var(--mat-sys-label-large);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: var(--mat-sys-title-medium);
+  .location-icon {
+    color: #ff5722;
+  }
+}
+
+.spacer {
+  flex: 1;
+}
+
+.participants {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}

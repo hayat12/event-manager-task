@@ -1,0 +1,16 @@
+<mat-form-field appearance="outline" subscriptSizing="dynamic">
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <mat-date-range-input [rangePicker]="picker" [disabled]="disabled()">
+    <input matStartDate [placeholder]="startPlaceholder()" [value]="start()" (dateChange)="setStart($event.value)" />
+    <input matEndDate [placeholder]="endPlaceholder()" [value]="end()" (dateChange)="setEnd($event.value)" />
+  </mat-date-range-input>
+  @if (!isEmpty()) {
+    <button mat-icon-button matIconSuffix type="button" (click)="clear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+  <mat-datepicker-toggle matIconSuffix [for]="picker" />
+  <mat-date-range-picker #picker (closed)="onTouched()" />
+</mat-form-field>

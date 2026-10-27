@@ -1,0 +1,137 @@
+{
+  "events": {
+    "create": {
+      "errors": {
+        "dateFuture": "Das Datum muss in der Zukunft liegen.",
+        "dateRequired": "Datum ist erforderlich.",
+        "locationRequired": "Ort ist erforderlich."
+      },
+      "fields": {
+        "date": "Datum",
+        "location": "Ort",
+        "status": "Status"
+      },
+      "submit": "Erstellen",
+      "title": "Veranstaltung erstellen"
+    },
+    "details": {
+      "columns": {
+        "attendance": "Teilnahmestatus",
+        "email": "E-Mail",
+        "name": "Name",
+        "role": "Rolle"
+      },
+      "empty": "Keine Teilnehmer.",
+      "form": {
+        "add": "Hinzufügen",
+        "emailInvalid": "Bitte eine gültige E-Mail eingeben.",
+        "emailRequired": "E-Mail ist erforderlich.",
+        "nameRequired": "Name ist erforderlich."
+      },
+      "loadError": "Teilnehmer konnten nicht geladen werden.",
+      "remove": {
+        "confirm": "Entfernen",
+        "message": "{$name} wird aus dieser Veranstaltung entfernt.",
+        "title": "Teilnehmer entfernen"
+      },
+      "title": "Teilnehmer",
+      "titleWithCount": "Teilnehmer ({$INTERPOLATION})"
+    },
+    "list": {
+      "card": {
+        "participants": "{$INTERPOLATION} Teilnehmer"
+      },
+      "columns": {
+        "date": "Datum",
+        "details": "Details",
+        "location": "Ort",
+        "participants": "Teilnehmer",
+        "status": "Status"
+      },
+      "delete": {
+        "confirm": "Löschen",
+        "message": "Die Veranstaltung am {$date} in {$location} wird mit allen Teilnehmern gelöscht.",
+        "title": "Veranstaltung löschen"
+      },
+      "details": {
+        "loading": "Details werden geladen …"
+      },
+      "errors": {
+        "create": "Veranstaltung konnte nicht erstellt werden.",
+        "delete": "Veranstaltung konnte nicht gelöscht werden.",
+        "export": "Export fehlgeschlagen.",
+        "load": "Events konnten nicht geladen werden."
+      },
+      "filters": {
+        "all": "Alle",
+        "dateFrom": "Von",
+        "dateRange": "Zeitraum",
+        "dateTo": "Bis",
+        "groupByLocation": "Ort",
+        "groupByStatus": "Status",
+        "groupNone": "Keine",
+        "grouping": "Gruppierung",
+        "location": "Ort",
+        "status": "Status"
+      },
+      "group": {
+        "summary": "{$eventCount} Events, {$participantCount} Teilnehmer"
+      },
+      "pageTitle": "Events",
+      "statistics": {
+        "cancelled": "Abgesagt",
+        "done": "Erledigt",
+        "planned": "Geplant",
+        "total": "Events gesamt"
+      },
+      "tableLabel": "Events",
+      "title": "Events",
+      "toolbar": {
+        "create": "Neu"
+      }
+    },
+    "model": {
+      "attendance": {
+        "confirmed": "Bestätigt",
+        "registered": "Angemeldet",
+        "waitingList": "Warteliste"
+      },
+      "role": {
+        "guest": "Gast",
+        "organizer": "Organisator",
+        "speaker": "Referent"
+      },
+      "status": {
+        "cancelled": "Abgesagt",
+        "done": "Erledigt",
+        "planned": "Geplant"
+      }
+    }
+  },
+  "layout": {
+    "header": {
+      "searchPlaceholder": "Events suchen..."
+    },
+    "sideMenu": {
+      "allEvents": "Alle Events",
+      "language": "Sprache",
+      "title": "Events"
+    }
+  },
+  "shared": {
+    "actions": {
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen"
+    },
+    "errors": {
+      "saveFailed": "Änderung konnte nicht gespeichert werden."
+    },
+    "table": {
+      "empty": "Keine Einträge gefunden.",
+      "range": "{$INTERPOLATION} – {$INTERPOLATION_1} von {$INTERPOLATION_2}",
+      "resetFilters": "Filter zurücksetzen",
+      "download": "Herunterladen",
+      "retry": "Erneut versuchen"
+    }
+  }
+}

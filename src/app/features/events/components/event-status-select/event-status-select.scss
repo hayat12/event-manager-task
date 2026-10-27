@@ -1,0 +1,16 @@
+:host {
+  display: inline-block;
+}
+
+mat-select {
+  min-width: 80px;
+}
+
+.status {
+  margin-right: 8px;
+  &.status--done{
+    background: #20c997;
+    color: var(--mat-sys-on-primary-container);
+    opacity: 0.5px;
+  }
+}

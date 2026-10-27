@@ -1,0 +1,12 @@
+<nav class="side-menu">
+  <h2 class="title" i18n="@@layout.sideMenu.title">Events</h2>
+  <ul class="nav-list">
+    @for (item of menus; track item.id) {
+      <li [id]="'menu-' + $index">
+        <app-side-menu-item [path]="item.path" [icon]="item.icon" [label]="item.label" />
+      </li>
+    }
+  </ul>
+
+  <app-menu-setting class="menu-setting" />
+</nav>

@@ -1,0 +1,9 @@
+@for (row of rowList(); track row) {
+  <tr>
+    @for (column of columnList(); track column) {
+      <td>
+        <span class="text" [style.width]="width(row, column)"></span>
+      </td>
+    }
+  </tr>
+}

@@ -1,0 +1,22 @@
+<mat-form-field appearance="outline" subscriptSizing="dynamic">
+  @if (label()) {
+    <mat-label>{{ label() }}</mat-label>
+  }
+  <mat-select
+    [value]="value()"
+    [disabled]="disabled()"
+    [errorStateMatcher]="errorStateMatcher"
+    (valueChange)="update($event)"
+    (closed)="onTouched()"
+  >
+    @if (emptyLabel() !== null) {
+      <mat-option [value]="null">{{ emptyLabel() }}</mat-option>
+    }
+    @for (option of options(); track option.value) {
+      <mat-option [value]="option.value">{{ option.label }}</mat-option>
+    }
+  </mat-select>
+  @if (errorMessage(); as message) {
+    <mat-error>{{ message }}</mat-error>
+  }
+</mat-form-field>

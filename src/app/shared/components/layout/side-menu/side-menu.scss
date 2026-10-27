@@ -1,0 +1,70 @@
+:host {
+  display: block;
+  background: var(--mat-sys-surface);
+  border-right: 1px solid var(--mat-sys-outline-variant);
+}
+
+.side-menu {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box; // the padding stays inside the full height
+  height: 100%;
+  padding: 16px 12px;
+}
+
+// Pinned to the bottom of the side menu.
+.menu-setting {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+}
+
+.title {
+  margin: 0 12px 8px;
+  color: var(--mat-sys-on-surface-variant);
+  font: var(--mat-sys-title-small);
+}
+
+.nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-sub {
+  padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+  :host {
+    border-right: 0;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  .side-menu {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    overflow-x: auto;
+  }
+
+  .menu-setting {
+    margin-left: auto;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .nav-list,
+  .nav-list li {
+    display: flex;
+    gap: 4px;
+  }
+
+  .nav-sub {
+    padding-left: 0;
+  }
+}

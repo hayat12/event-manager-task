@@ -1,0 +1,40 @@
+<app-dropdown
+  label="Status"
+  i18n-label="@@events.list.filters.status"
+  emptyLabel="All"
+  i18n-emptyLabel="@@events.list.filters.all"
+  [options]="statusOptions"
+  [ngModel]="filters().status"
+  (ngModelChange)="filtersChange.emit({ status: $event })"
+/>
+
+<app-dropdown
+  label="Ort"
+  i18n-label="@@events.list.filters.location"
+  emptyLabel="All"
+  i18n-emptyLabel="@@events.list.filters.all"
+  [options]="locationOptions()"
+  [ngModel]="filters().location"
+  (ngModelChange)="filtersChange.emit({ location: $event })"
+/>
+
+<app-date-range-picker
+  label="Zeitraum"
+  i18n-label="@@events.list.filters.dateRange"
+  startPlaceholder="Von"
+  i18n-startPlaceholder="@@events.list.filters.dateFrom"
+  endPlaceholder="Bis"
+  i18n-endPlaceholder="@@events.list.filters.dateTo"
+  [ngModel]="dateRange()"
+  (ngModelChange)="filtersChange.emit({ dateFrom: $event.start, dateTo: $event.end })"
+/>
+
+<app-dropdown
+  label="Gruppierung"
+  i18n-label="@@events.list.filters.grouping"
+  emptyLabel="Keine"
+  i18n-emptyLabel="@@events.list.filters.groupNone"
+  [options]="groupOptions"
+  [ngModel]="groupBy()"
+  (ngModelChange)="groupByChange.emit($event)"
+/>

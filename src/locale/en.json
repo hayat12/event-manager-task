@@ -1,0 +1,137 @@
+{
+  "events": {
+    "create": {
+      "errors": {
+        "dateFuture": "The date must be in the future.",
+        "dateRequired": "Date is required.",
+        "locationRequired": "Location is required."
+      },
+      "fields": {
+        "date": "Date",
+        "location": "Location",
+        "status": "Status"
+      },
+      "submit": "Create",
+      "title": "Create event"
+    },
+    "details": {
+      "columns": {
+        "attendance": "Attendance",
+        "email": "Email",
+        "name": "Name",
+        "role": "Role"
+      },
+      "empty": "No participants.",
+      "form": {
+        "add": "Add",
+        "emailInvalid": "Please enter a valid email address.",
+        "emailRequired": "Email is required.",
+        "nameRequired": "Name is required."
+      },
+      "loadError": "Participants could not be loaded.",
+      "remove": {
+        "confirm": "Remove",
+        "message": "{$name} will be removed from this event.",
+        "title": "Remove participant"
+      },
+      "title": "Participants",
+      "titleWithCount": "Participants ({$INTERPOLATION})"
+    },
+    "list": {
+      "card": {
+        "participants": "{$INTERPOLATION} participants"
+      },
+      "columns": {
+        "date": "Date",
+        "details": "Details",
+        "location": "Location",
+        "participants": "Participants",
+        "status": "Status"
+      },
+      "delete": {
+        "confirm": "Delete",
+        "message": "The event on {$date} in {$location} will be deleted with all its participants.",
+        "title": "Delete event"
+      },
+      "details": {
+        "loading": "Loading details …"
+      },
+      "errors": {
+        "create": "The event could not be created.",
+        "delete": "The event could not be deleted.",
+        "export": "Export failed.",
+        "load": "Events could not be loaded."
+      },
+      "filters": {
+        "all": "All",
+        "dateFrom": "From",
+        "dateRange": "Date range",
+        "dateTo": "To",
+        "groupByLocation": "Location",
+        "groupByStatus": "Status",
+        "groupNone": "None",
+        "grouping": "Grouping",
+        "location": "Location",
+        "status": "Status"
+      },
+      "group": {
+        "summary": "{$eventCount} events, {$participantCount} participants"
+      },
+      "pageTitle": "Events",
+      "statistics": {
+        "cancelled": "Cancelled",
+        "done": "Done",
+        "planned": "Planned",
+        "total": "Total events"
+      },
+      "tableLabel": "Events",
+      "title": "Events",
+      "toolbar": {
+        "create": "New"
+      }
+    },
+    "model": {
+      "attendance": {
+        "confirmed": "Confirmed",
+        "registered": "Registered",
+        "waitingList": "Waiting list"
+      },
+      "role": {
+        "guest": "Guest",
+        "organizer": "Organizer",
+        "speaker": "Speaker"
+      },
+      "status": {
+        "cancelled": "Cancelled",
+        "done": "Done",
+        "planned": "Planned"
+      }
+    }
+  },
+  "layout": {
+    "header": {
+      "searchPlaceholder": "Search events..."
+    },
+    "sideMenu": {
+      "allEvents": "All events",
+      "language": "Language",
+      "title": "Events"
+    }
+  },
+  "shared": {
+    "actions": {
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "errors": {
+      "saveFailed": "The change could not be saved."
+    },
+    "table": {
+      "empty": "No entries found.",
+      "range": "{$INTERPOLATION} – {$INTERPOLATION_1} of {$INTERPOLATION_2}",
+      "download": "Download",
+      "resetFilters": "Reset filters",
+      "retry": "Try again"
+    }
+  }
+}

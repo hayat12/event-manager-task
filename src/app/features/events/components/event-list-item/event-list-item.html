@@ -1,0 +1,28 @@
+<td>{{ event().date | germanDate }}</td>
+<td>
+  <app-event-location-select
+    [location]="event().location"
+    [locations]="locations()"
+    (locationChange)="edit.emit({ location: $event })"
+  />
+</td>
+<td>
+  <app-event-status-select [status]="event().status" (statusChange)="edit.emit({ status: $event })" />
+</td>
+<td class="center">{{ event().participantCount }}</td>
+<td class="numeric actions">
+  <button
+    mat-icon-button
+    type="button"
+    (click)="remove.emit()"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    type="button"
+    (click)="view.emit()"
+  >
+    <mat-icon>{{ expanded() ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+  </button>
+</td>

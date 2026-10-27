@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+:host {
+  display: block;
+  @include mat.form-field-overrides(
+    (
+      container-height: 40px,
+      container-vertical-padding: 8px,
+      outlined-container-shape: 20px,
+    )
+  );
+}
+
+mat-form-field {
+  width: 100%;
+}

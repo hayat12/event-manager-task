@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+
+:host {
+  height: 52px;
+  cursor: pointer;
+  transition: background-color 120ms;
+
+  &:hover {
+    background: var(--mat-sys-surface-container-low);
+  }
+
+  &.expanded {
+    background: var(--mat-sys-secondary-container);
+  }
+}
+
+td {
+  padding: 0 16px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  font: var(--mat-sys-body-medium);
+}
+
+:host:last-child td {
+  border-bottom: 0;
+}
+
+app-event-location-select,
+app-event-status-select {
+  border: 0.5px dashed lightgray;
+  padding: 3px 8px;
+  border-radius: 8px;
+  @include mat.select-overrides(
+    (
+      trigger-text-size: var(--mat-sys-body-medium-size),
+      trigger-text-line-height: var(--mat-sys-body-medium-line-height),
+    )
+  );
+}
+
+.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.center {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  white-space: nowrap;
+}

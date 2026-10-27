@@ -1,0 +1,16 @@
+<header class="header">
+  <a class="brand" routerLink="/events">
+    <mat-icon>event</mat-icon>
+    <span>Event Manager</span>
+  </a>
+
+  <div class="actions">
+    <app-search-field
+      class="search"
+      [value]="store.search()"
+      placeholder="Events suchen..."
+      i18n-placeholder="@@layout.header.searchPlaceholder"
+      (searchChange)="store.setSearch($event)"
+    />
+  </div>
+</header>

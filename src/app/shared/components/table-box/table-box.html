@@ -1,0 +1,135 @@
+<app-table-header
+  [count]="total()"
+  [label]="label()"
+  [view]="store.view()"
+  [viewToggle]="!!cardTemplate()"
+  (viewChange)="onView($event)"
+  [createLabel]="createLabel()"
+  (exportCsv)="exportCsv.emit()"
+  (create)="create.emit()"
+  [resettable]="resettable()"
+  (resetFilter)="resetFilter.emit()"
+/>
+
+<div class="progress">
+  @if (loading()) {
+    <mat-progress-bar mode="indeterminate" />
+  }
+</div>
+
+@if (error(); as error) {
+  <div class="error" role="alert">
+    <mat-icon>error</mat-icon>
+    <span>{{ error }}</span>
+    <button mat-button type="button" (click)="retry.emit()" i18n="@@shared.table.retry">Erneut versuchen</button>
+  </div>
+}
+
+@if (store.view() === 'card' && cardTemplate(); as card) {
+  <div class="card-grid">
+    <!-- First load: placeholder cards. Later reloads keep the cards. -->
+    @if (loading() && !rows().length) {
+      @for (placeholder of skeletonCards; track placeholder) {
+        <app-card-skeleton />
+      }
+    }
+    @for (item of items(); track item.key) {
+      @if (item.kind === 'group') {
+        <h3 class="card-group">{{ item.group.label }} · {{ item.group.summary }}</h3>
+      } @else {
+        <div class="card-cell">
+          <ng-container *ngTemplateOutlet="card.template; context: item.context" />
+        </div>
+        @if (item.context.expanded && detailTemplate(); as detail) {
+          <div class="card-detail">
+            <ng-container *ngTemplateOutlet="detail.template; context: { $implicit: item.context.$implicit }" />
+          </div>
+        }
+      }
+    } @empty {
+      @if (!loading() && !error()) {
+        <p class="empty-cell" i18n="@@shared.table.empty">Keine Einträge gefunden.</p>
+      }
+    }
+  </div>
+} @else {
+  <div class="table-scroll">
+    <table
+      matSort
+      matSortDisableClear
+      [matSortActive]="sort()?.active ?? ''"
+      [matSortDirection]="sort()?.direction ?? 'asc'"
+      (matSortChange)="onSort($event)"
+    >
+      <thead>
+        <tr>
+          @for (column of columns(); track column.key) {
+            @if (column.sortable) {
+              <th scope="col" [mat-sort-header]="column.key">{{ column.label }}</th>
+            } @else {
+              <th scope="col" [class]="column.align ?? 'start'">
+                @if (column.hideLabel) {
+                  <span class="cdk-visually-hidden">{{ column.label }}</span>
+                } @else {
+                  {{ column.label }}
+                }
+              </th>
+            }
+          }
+        </tr>
+      </thead>
+      @if (loading() && !rows().length) {
+        <tbody app-table-skeleton [columns]="columns().length"></tbody>
+      } @else {
+        <tbody>
+          @for (item of items(); track item.key) {
+            @if (item.kind === 'group') {
+              <tr class="group-row">
+                <th scope="rowgroup" [attr.colspan]="columns().length">
+                  {{ item.group.label }} · {{ item.group.summary }}
+                </th>
+              </tr>
+            } @else {
+              <ng-container *ngTemplateOutlet="rowTemplate().template; context: item.context" />
+              @if (item.context.expanded && detailTemplate(); as detail) {
+                <tr class="detail-row">
+                  <td [attr.colspan]="columns().length">
+                    <ng-container *ngTemplateOutlet="detail.template; context: { $implicit: item.context.$implicit }" />
+                  </td>
+                </tr>
+              }
+            }
+          } @empty {
+            <tr>
+              <td class="empty-cell" [attr.colspan]="columns().length">
+                @if (!error()) {
+                  <ng-container i18n="@@shared.table.empty">Keine Einträge gefunden.</ng-container>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      }
+    </table>
+  </div>
+}
+
+<div class="pagination">
+  <span i18n="@@shared.table.range">{{ rangeStart() }} – {{ rangeEnd() }} von {{ total() | number }}</span>
+  <button
+    mat-icon-button
+    type="button"
+    [disabled]="!canPrev()"
+    (click)="pageChange.emit(pageIndex() - 1)"
+  >
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    type="button"
+    [disabled]="!canNext()"
+    (click)="pageChange.emit(pageIndex() + 1)"
+  >
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>

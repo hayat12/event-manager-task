@@ -1,0 +1,82 @@
+<h1 class="title" i18n="@@events.list.title">Events</h1>
+
+<div>
+  <section class="statistics">
+    @for (statistic of statistics; track statistic.key) {
+      <app-event-statistics-card
+        [active]="isActiveStatistic(statistic)"
+        [value]="counts()[statistic.key]"
+        [label]="statistic.label"
+        [icon]="statistic.icon"
+        [tone]="statistic.key"
+      />
+    }
+  </section>
+
+  <app-event-filter-bar
+    [filters]="store.filters()"
+    [groupBy]="store.groupBy()"
+    [locations]="locations()"
+    (filtersChange)="store.setFilters($event)"
+    (groupByChange)="store.setGroupBy($event)"
+  />
+
+  <app-table-box
+    label="Events"
+    i18n-label="@@events.list.tableLabel"
+    [columns]="columns"
+    [rows]="store.events()"
+    [total]="store.totalCount()"
+    [pageIndex]="store.pageIndex()"
+    [pageSize]="store.pageSize()"
+    [sort]="store.sort()"
+    [loading]="store.loading()"
+    [error]="store.error()"
+    [groups]="groups()"
+    [groupKey]="groupKey()"
+    [rowKey]="eventId"
+    [view]="store.view()"
+    (viewChange)="store.setView($event)"
+    (sortChange)="onSort($event)"
+    (pageChange)="store.setPage($event)"
+    [resettable]="store.hasFilters()"
+    (resetFilter)="store.resetFilters()"
+    createLabel="Neu"
+    i18n-createLabel="@@events.list.toolbar.create"
+    (retry)="store.load(store.query())"
+    (exportCsv)="store.exportCsv()"
+    (create)="openCreateDialog()"
+  >
+    <ng-template tableRow let-event let-expanded="expanded" let-toggle="toggle">
+      <tr
+        app-event-list-item
+        class="event-list-item"
+        [event]="event"
+        [expanded]="expanded"
+        [locations]="locations()"
+        (view)="toggle()"
+        (edit)="store.updateEvent({ id: event.id, changes: $event })"
+        (remove)="confirmDelete(event)"
+      ></tr>
+    </ng-template>
+
+    <ng-template tableCard let-event let-expanded="expanded" let-toggle="toggle">
+      <app-event-card
+        [event]="event"
+        [expanded]="expanded"
+        [locations]="locations()"
+        (view)="toggle()"
+        (edit)="store.updateEvent({ id: event.id, changes: $event })"
+        (remove)="confirmDelete(event)"
+      />
+    </ng-template>
+
+    <ng-template tableDetail let-event>
+      @defer (on immediate) {
+        <app-event-details [eventId]="event.id" (participantsChange)="store.load(store.query())" />
+      } @loading {
+        <p i18n="@@events.list.details.loading">Details werden geladen …</p>
+      }
+    </ng-template>
+  </app-table-box>
+</div>

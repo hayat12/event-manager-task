@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+app-dropdown,
+app-date-range-picker {
+  flex: 1 1 180px;
+}

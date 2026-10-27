@@ -1,0 +1,16 @@
+<button type="button" class="setting" [matMenuTriggerFor]="languageMenu" #trigger="matMenuTrigger">
+  <mat-icon>language</mat-icon>
+  <div class="label">
+    <span i18n="@@layout.sideMenu.language">Sprache</span> ( {{currentLanguage}} )
+  </div>
+  <mat-icon class="arrow" [class.open]="trigger.menuOpen">expand_less</mat-icon>
+</button>
+
+<mat-menu #languageMenu="matMenu" yPosition="above">
+  @for (language of languages; track language.code) {
+    <a mat-menu-item [href]="'/' + language.code + currentPath()" [attr.lang]="language.code">
+      <mat-icon>{{ language.code === currentLanguage ? 'check' : '' }}</mat-icon>
+      <span>{{ language.label }}</span>
+    </a>
+  }
+</mat-menu>

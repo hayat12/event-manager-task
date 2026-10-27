@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline" subscriptSizing="dynamic">
+  <mat-icon matIconPrefix>search</mat-icon>
+  <input
+    #searchInput
+    matInput
+    type="search"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    (input)="onInput(searchInput.value)"
+  />
+</mat-form-field>

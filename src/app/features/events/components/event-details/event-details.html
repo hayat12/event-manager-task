@@ -1,0 +1,95 @@
+@if (participants.error()) {
+  <p class="error" role="alert" i18n="@@events.details.loadError">Teilnehmer konnten nicht geladen werden.</p>
+} @else {
+  @if (participants.hasValue()) {
+    <h3 class="title" i18n="@@events.details.titleWithCount">Teilnehmer ({{ participants.value().length }})</h3>
+  } @else {
+    <h3 class="title" i18n="@@events.details.title">Teilnehmer</h3>
+  }
+  <table>
+    <thead>
+      <tr>
+        <th scope="col" i18n="@@events.details.columns.name">Name</th>
+        <th scope="col" i18n="@@events.details.columns.email">E-Mail</th>
+        <th scope="col" i18n="@@events.details.columns.role">Rolle</th>
+        <th scope="col" i18n="@@events.details.columns.attendance">Teilnahmestatus</th>
+        <th scope="col" class="actions"></th>
+      </tr>
+    </thead>
+    <!-- Text placeholders until the participants have loaded. -->
+    @if (participants.hasValue()) {
+      <tbody>
+        @for (participant of participants.value(); track participant.id) {
+          <tr>
+            <td>{{ participant.name }}</td>
+            <td>{{ participant.email }}</td>
+            <td>
+              <mat-select
+                [panelWidth]="null"
+                [value]="participant.role"
+                (valueChange)="change(participant, { role: $event })"
+              >
+                @for (role of roles; track role[0]) {
+                  <mat-option [value]="role[0]">{{ role[1] }}</mat-option>
+                }
+              </mat-select>
+            </td>
+            <td>
+              <mat-select
+                [panelWidth]="null"
+                [value]="participant.attendanceStatus"
+                (valueChange)="change(participant, { attendanceStatus: $event })"
+              >
+                @for (status of statuses; track status) {
+                  <mat-option [value]="status">{{ attendanceLabels[status] }}</mat-option>
+                }
+              </mat-select>
+            </td>
+            <td class="actions">
+              <button
+                mat-icon-button
+                type="button"
+                (click)="remove(participant)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td class="message" colspan="5" i18n="@@events.details.empty">Keine Teilnehmer.</td>
+          </tr>
+        }
+      </tbody>
+    } @else {
+      <tbody app-table-skeleton [columns]="5" [rows]="3"></tbody>
+    }
+  </table>
+
+  @if (participants.hasValue()) {
+    <form [formGroup]="form" (ngSubmit)="add()">
+      <app-text-input
+        formControlName="name"
+        label="Name"
+        i18n-label="@@events.details.columns.name"
+        [errorMessages]="nameErrors"
+      />
+      <app-text-input
+        formControlName="email"
+        type="email"
+        label="E-Mail"
+        i18n-label="@@events.details.columns.email"
+        [errorMessages]="emailErrors"
+      />
+      <app-dropdown formControlName="role" label="Rolle" i18n-label="@@events.details.columns.role" [options]="roleOptions" />
+      <button mat-stroked-button type="submit">
+        <mat-icon>person_add</mat-icon>
+        <span i18n="@@events.details.form.add">Hinzufügen</span>
+      </button>
+    </form>
+
+    @if (error(); as message) {
+      <p class="error" role="alert">{{ message }}</p>
+    }
+  }
+}

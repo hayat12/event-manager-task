@@ -1,0 +1,37 @@
+<div class="top">
+  <span class="date">{{ event().date | germanDate }}</span>
+  <app-event-status-select [status]="event().status" (statusChange)="edit.emit({ status: $event })" />
+</div>
+
+<div class="location">
+  <mat-icon class="location-icon">location_on</mat-icon>
+  <app-event-location-select
+    [location]="event().location"
+    [locations]="locations()"
+    (locationChange)="edit.emit({ location: $event })"
+  />
+</div>
+
+<div class="bottom">
+  <span class="participants">
+    <mat-icon>group</mat-icon>
+    <ng-container i18n="@@events.list.card.participants">{{ event().participantCount }} Teilnehmer</ng-container>
+  </span>
+  <span class="spacer"></span>
+
+  <button
+    mat-icon-button
+    type="button"
+    (click)="remove.emit()"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    type="button"
+    (click)="view.emit()"
+  >
+    <mat-icon>{{ expanded() ? 'visibility_off' : 'visibility' }}</mat-icon>
+  </button>
+</div>

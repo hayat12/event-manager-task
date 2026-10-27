@@ -1,0 +1,75 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: default;
+}
+
+.title {
+  margin: 0;
+  font: var(--mat-sys-title-small);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 8px;
+  background: var(--mat-sys-surface);
+}
+
+th,
+td {
+  height: 44px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+  font: var(--mat-sys-body-medium);
+  text-align: left;
+}
+
+th {
+  color: var(--mat-sys-on-surface-variant);
+  font: var(--mat-sys-label-large);
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.actions {
+  width: 1%;
+  text-align: right;
+}
+
+mat-select {
+  max-width: 160px;
+  @include mat.select-overrides(
+    (
+      trigger-text-size: var(--mat-sys-body-medium-size),
+    )
+  );
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+
+  app-text-input,
+  app-dropdown {
+    flex: 1 1 200px;
+  }
+}
+
+.message {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.error {
+  margin: 0;
+  color: var(--mat-sys-error);
+}
