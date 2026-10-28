@@ -8,7 +8,7 @@ import { EventStatusSelect } from '../event-status-select/event-status-select';
 
 /** One event as a table row; Ort and Status are edited in place. */
 @Component({
-  selector: 'app-event-list-item',
+  selector: 'tr[app-event-list-item]',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [GermanDatePipe, EventLocationSelect, EventStatusSelect, MatButtonModule, MatIconModule],
   templateUrl: './event-list-item.html',
